@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xiami</title>
+    <script src="../js/web3.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <span>输入代币合约</span>
+    <input type="text"value ='31312312312'>
+
+    <br>    
+    <br>    
+    <textarea id="div_text" id="" cols="70" rows="20"></textarea>
+
+    <br>
+    <br>
+
+
+    <button type="button" onclick="cx()">查询代币</button>
+</body>
+
+<script>
+
+{
+        // getTokenName().then(res=>{setToken_Name(res)})
+        var token0 = '0x64ff637fb478863b7468bc97d30a5bf3a428a1fd'
+        var bigAddress;
+        var TOKEN_name;
+        var decimals;
+        let web3Provider;
+        var user;
+        var gasp;
+        //授权
+        {
+            if (window.ethereum) {
+                web3Provider = window.ethereum;
+                try {
+                    // 请求用户授权
+                    window.ethereum.enable
+                } catch (error) {
+                    // 用户不授权时
+                    console.error("User denied account access")
+                }
+            }
+            var web3 = new Web3(web3Provider);//web3js就是你需要的web3实例
+
+            var res = web3.currentProvider;
+
+            console.log(res.networkVersion);
+            web3.eth.getGasPrice().then(res=>{
+                setGas(res);
+                gasp = getGas();
+
+            });
+
+
+            //walletadd()
+
+            function walletadd() {
+                web3.eth.accounts.wallet.clear();
+                let split = selectAddress.split('\n');
+                for (let index = 0; index < split.length; index++) {
+                    let element = split[index];
+                    //console.log(element);
+                    let keys = element.split('----');
+                    let key = keys[1];
+                    let addre = keys[0];
+                    //setlock(addre,0)
+                    // console.log(index+"  "+key);
+                    web3.eth.accounts.wallet.add({
+                        privateKey: key
+                    });
+                    //console.log(keys[0]);
+                }
+            }
+        }
+
+         //获取代币名称
+    async function getTokenName() {
+        try {
+            let Tokencontract = new web3.eth.Contract(addressabi, token0);
+            let mytoken = Tokencontract.methods.symbol().call();
+            return mytoken;
+        } catch (error) {
+        }
+    }
+    async function getdecimals() {
+        try {
+            let Tokencontract = new web3.eth.Contract(addressabi, token0);
+            let decimals = Tokencontract.methods.decimals().call();
+            return decimals;
+        } catch (error) {
+        }
+    }
+
+        var total_ht = 0;
+        var total_coin = 0;
+        function cx() {
+            total_ht = 0;
+            total_coin = 0;
+            getTokenName().then(res => {
+                setToken_Name(res)
+                TOKEN_name = getToken_Name();
+            });
+
+            getdecimals().then(res=>{
+                setdecimals(res);
+                decimals = getsetdecimals();
+            });
+
+
+
+            var res =$("#div_text").val();
+            
+            if(res.indexOf('----')!=-1){
+
+            }else{
+                let c = res.split('\n');
+                
+                for (let index = 0; index < c.length; index++) {
+                const element = c[index];
+                getBalance(index, element);
+            }
+            }
+            
+        };
+
+        function tj() {
+            console.log("ht:" + total_ht + "    代币总量：  " + parseInt(total_coin)+"     "+digitUppercase(parseInt(total_coin)+''));
+        }
+
+        var digitUppercase = function(n) {
+            var fraction = ['角', '分'];
+            var digit = [
+                '零', '1', '2', '3', '4',
+                '5', '6', '7', '8', '9'
+            ];
+            var unit = [
+                [' ', '万', '亿'],
+                ['', '十', '百', '千']
+            ];
+            var head = n < 0 ? '欠' : '';
+            n = Math.abs(n);
+            var s = '';
+            for (var i = 0; i < fraction.length; i++) {
+                s += (digit[Math.floor(n * 10 * Math.pow(10, i)) % 10] + fraction[i]).replace(/零./, '');
+            }
+            s = s || ' ';
+            n = Math.floor(n);
+            for (var i = 0; i < unit[0].length && n > 0; i++) {
+                var p = '';
+                for (var j = 0; j < unit[1].length && n > 0; j++) {
+                    p = digit[n % 10] + unit[1][j] + p;
+                    n = Math.floor(n / 10);
+                }
+                s = p.replace(/(零.)*零$/, '').replace(/^$/, '零') + unit[0][i] + s;
+            }
+            return head + s;
+}
+var toDigitUppercase =  function(){
+    var num = $('#input').val();
+    var str = digitUppercase(num);
+    $('#text').html(str);
+}
+
+        function intToChinese ( str ) {
+         str = str+'';
+         var len = str.length-1;
+         var idxs = ['','十','百','千','万','十','百','千','亿','十','百','千','万','十','百','千','亿'];
+         var num = ['零','一','二','三','四','五','六','七','八','九'];
+         return str.replace(/([1-9]|0+)/g,function( $, $1, idx, full) {
+          var pos = 0;
+          if( $1[0] != '0' ){
+           pos = len-idx;
+           if( idx == 0 && $1[0] == 1 && idxs[len-idx] == '十'){
+            return idxs[len-idx];
+           }
+           return num[$1[0]] + idxs[len-idx];
+          } else {
+           var left = len - idx;
+           var right = len - idx + $1.length;
+           if( Math.floor(right/4) - Math.floor(left/4) > 0 ){
+            pos = left - left%4;
+           }
+           if( pos ){
+            return idxs[pos] + num[$1[0]];
+           } else if( idx + $1.length >= len ){
+            return '';
+           }else {
+            return num[$1[0]]
+           }
+          }
+         });
+        }
+
+
+
+
+        async function getBalance(index, params) {
+            web3.eth.getBalance(params, function (err, p) {
+                //精度18
+                //ETH转wei
+                //web3.utils.toWei('1', 'ether');
+                //wei转ETH
+                let eth = web3.utils.fromWei(p, 'ether');
+                //console.log("当前余额为："+eth+"HT");
+                //代币余额
+                total_ht = parseFloat(total_ht) + parseFloat(eth);
+                getexcontract(index, params, token0, eth + "HT")
+            });
+            // var gas=web3.eth.getGasPrice(function(PromiseValue){
+            // 	console.log(PromiseValue);
+            // });	
+        }
+        function getexcontract(index, address, contract, balance) {
+            //var contract ="0xb450ebd2c08a6c9f6b64e25fe9a3fa1b13d8f639";
+            let MyContract = new web3.eth.Contract(addressabi, contract);
+            MyContract.methods.balanceOf(address).call().then(function (p) {
+                let etherc20 =weiformeth(p);
+                total_coin = parseFloat(total_coin) + parseFloat(etherc20);//
+                console.log(index + "|  " + address + "  当前余额为：" + balance + "  ||  代币余额：" +etherc20  + " " + TOKEN_name);
+            });
+        }
+
+    }
+
+
+
+
+</script>
+
+
+
+<script>
+    function weiformeth(num) {
+      return  num / Math.pow(10,decimals);
+    }
+    function set(value) {
+    localStorage.setItem("address", value);
+}
+function get() {
+    return localStorage.getItem("address");
+}
+function del() {
+    localStorage.setItem("address", "");
+}
+
+
+function setlock(name,value) {
+    localStorage.setItem("lock"+name, value);
+}
+function getlock(name) {
+    return localStorage.getItem("lock"+name);
+}
+
+
+
+function setToken_Name(value) {
+    localStorage.setItem("TONEN_NAME", value);
+}
+function getToken_Name(value) {
+    return localStorage.getItem("TONEN_NAME");
+}
+
+function setdecimals(value) {
+    localStorage.setItem("decimals", value);
+}
+
+function getsetdecimals() {
+    return localStorage.getItem("decimals");
+}
+
+
+function setGas(value) {
+    localStorage.setItem("gas", value);
+}
+function getGas() {
+    return localStorage.getItem("gas");
+}
+//代币ABI(通用ERC20 )
+const  addressabi=[{"inputs":[{"internalType":"address","name":"operator","type":"address"},{"internalType":"address","name":"pauser","type":"address"},{"internalType":"string","name":"name","type":"string"},{"internalType":"string","name":"symbol","type":"string"},{"internalType":"uint8","name":"decimal","type":"uint8"}],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"spender","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"account","type":"address"}],"name":"Paused","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"account","type":"address"}],"name":"Unpaused","type":"event"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"spender","type":"address"}],"name":"allowance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"approve","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"burn","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"new_operator","type":"address"},{"internalType":"address","name":"new_pauser","type":"address"}],"name":"changeUser","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"decimals","outputs":[{"internalType":"uint8","name":"","type":"uint8"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"subtractedValue","type":"uint256"}],"name":"decreaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"addedValue","type":"uint256"}],"name":"increaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"mint","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"pause","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"paused","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"recipient","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transfer","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"sender","type":"address"},{"internalType":"address","name":"recipient","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transferFrom","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"unpause","outputs":[],"stateMutability":"nonpayable","type":"function"}];
+
+</script>
+</html>
