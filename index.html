@@ -23,6 +23,10 @@
 
     <button type="button" onclick="cx()">查询代币</button>
     <button type="button" onclick="tj()">统计代币</button>
+    <br>
+    <br>
+    
+    <textarea  cols="70" rows="2" id ='tjjb' value=''></textarea>
 </body>
 
 <script>
@@ -135,6 +139,11 @@
         };
 
         function tj() {
+           // tjjl
+
+           
+           var test = document.getElementById("tjjb");
+           test.value = ("ht:" + total_ht + "    代币总量：  " + parseInt(total_coin)+"     "+digitUppercase(parseInt(total_coin)+''));
             console.log("ht:" + total_ht + "    代币总量：  " + parseInt(total_coin)+"     "+digitUppercase(parseInt(total_coin)+''));
         }
 
