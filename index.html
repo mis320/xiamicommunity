@@ -5,12 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>xiami</title>
-    <script src="../js/web3.min.js" type="text/javascript" charset="utf-8"></script>
+    <!-- <script src="../js/web3.min.js" type="text/javascript" charset="utf-8"></script> -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://mis320.github.io/xiamicommunity/web3.min.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
     <span>输入代币合约</span>
-    <input type="text"value ='31312312312'>
+    <input type="text"value ='0x64ff637fb478863b7468bc97d30a5bf3a428a1fd' id='bt'>
 
     <br>    
     <br>    
@@ -27,7 +28,7 @@
 
 {
         // getTokenName().then(res=>{setToken_Name(res)})
-        var token0 = '0x64ff637fb478863b7468bc97d30a5bf3a428a1fd'
+        var token0 = '0x64ff637fb478863b7468bc97d30a5bf3a428a1fd';
         var bigAddress;
         var TOKEN_name;
         var decimals;
@@ -100,6 +101,9 @@
         var total_ht = 0;
         var total_coin = 0;
         function cx() {
+             token0 = $('#bt').val();
+
+             console.log(token0);
             total_ht = 0;
             total_coin = 0;
             getTokenName().then(res => {
