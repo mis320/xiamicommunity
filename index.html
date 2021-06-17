@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,17 +10,18 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://mis320.github.io/xiamicommunity/web3.min.js" type="text/javascript" charset="utf-8"></script>
 </head>
+
 <body>
     <span>输入代币合约</span>
-    <textarea  cols="50" rows="1" id ='bt' value=''>0x7100cec49faab3da5726bc54da80caa96509437b</textarea><br>
-   
+    <textarea cols="50" rows="1" id='bt' value=''>0x7100cec49faab3da5726bc54da80caa96509437b</textarea><br>
+
     <br>
     <br>
     <span id="">当前账号：(小号归集到的当前地址)</span><br>
-    <textarea  cols="50" rows="1" id ='dqzz' value=''></textarea><br>
-    
+    <textarea cols="50" rows="1" id='dqzz' value=''></textarea><br>
+
     <button type="button" onclick="获取当前账号()">获取当前账号</button>
-    <br>    
+    <br>
     <textarea id="div_text" id="" cols="70" rows="20"></textarea>
     <br>
     <br>
@@ -32,21 +34,21 @@
     <br>
     <br>
     <span>统计结果</span><br>
-    <textarea  cols="70" rows="2" id ='tjjb' value=''></textarea><br>
+    <textarea cols="70" rows="2" id='tjjb' value=''></textarea><br>
     <hr>
     <br>
     <span>目前支持HT,BNB</span><br>
     <span>请输入转账金额(平分给所有账号)</span>
     <br>
-    <input type="text"value ='0.1' id='htfell'><br>
+    <input type="text" value='0.1' id='htfell'><br>
     <button type="button" onclick="批量转账ht()">批量转账矿工费</button>
-<br>
+    <br>
     <hr>
-    <br>    
+    <br>
     <span>目前支持HT,BNB</span><br>
     <span>只支持整数</span><br>
     <span>每个账号转多少币 / 授权erc20额度</span><br>
-    <input type="text"value ='1' id='erc20fell'><br>
+    <input type="text" value='1' id='erc20fell'><br>
     <span>用多少授权多少代币</span></span><br>
     <button type="button" onclick="授权TERC20()">授权TERC20</button><br>
     <button type="button" onclick="批量转账TERC20()">批量转账IERC20代币</button>
@@ -54,13 +56,13 @@
     <br>
     <span>目前支持所有链</span><br>
     <span>每个账号保存多少代币</span><br>
-    <input type="text"value ='0' id='baoliu'><br>
+    <input type="text" value='0' id='baoliu'><br>
     <button type="button" onclick="归集()" disabled>归集</button>
 </body>
 
 <script>
 
-{
+    {
         // getTokenName().then(res=>{setToken_Name(res)})
         var token0 = '0x64ff637fb478863b7468bc97d30a5bf3a428a1fd';
         var bigAddress;
@@ -69,6 +71,7 @@
         let web3Provider;
         var user;
         var gasp;
+        let dff = [];
         //授权
         {
             if (window.ethereum) {
@@ -84,17 +87,17 @@
             var web3 = new Web3(web3Provider);//web3js就是你需要的web3实例
 
             var res = web3.currentProvider;
-           
-            
+
+
 
             console.log(res.networkVersion);
-            web3.eth.getGasPrice().then(res=>{
+            web3.eth.getGasPrice().then(res => {
                 setGas(res);
                 gasp = getGas();
 
             });
 
-           
+
             //walletadd()
 
             function walletadd() {
@@ -116,133 +119,143 @@
             }
         }
 
-         //获取代币名称
-    async function getTokenName() {
-        try {
-            let Tokencontract = new web3.eth.Contract(addressabi, token0);
-            let mytoken = Tokencontract.methods.symbol().call();
-            return mytoken;
-        } catch (error) {
+        //获取代币名称
+        async function getTokenName() {
+            try {
+                let Tokencontract = new web3.eth.Contract(addressabi, token0);
+                let mytoken = Tokencontract.methods.symbol().call();
+                return mytoken;
+            } catch (error) {
+            }
         }
-    }
 
 
-function 授权TERC20() {
-    let nowhtacc=web3.currentProvider.selectedAddress;
-    console.log(nowhtacc);
-    token0 = $('#bt').val();
-    console.log(token0);
-    getdecimals().then(res=>{
-        setdecimals(res);
-        decimals = getsetdecimals();
-     });
+        function 授权TERC20() {
+            let nowhtacc = web3.currentProvider.selectedAddress;
+            console.log(nowhtacc);
+            token0 = $('#bt').val();
+            console.log(token0);
+            getdecimals().then(res => {
+                setdecimals(res);
+                decimals = getsetdecimals();
+            });
 
-     if (decimals == undefined ||decimals == null ||decimals==NaN ) {
-         console.log('请重试');
-     }else{
-         
-     }
+            if (decimals == undefined || decimals == null || decimals == NaN) {
+                var test = document.getElementById("tjjb");
+                test.value = '请重试';
+                console.log('请重试');
+            } else {
 
-     console.log(decimals);
-     let b=ethforwei($('#erc20fell').val());
-    
-    console.log(b);
-    let MyContract = new web3.eth.Contract(addressabi,token0);
-    MyContract.methods.approve(PLTOKEN,b+'').send({
-        from: nowhtacc,
-        gasPrice: gasp,
-        gas: "777944",
-    }, (err, val) => {
-        if (err) { console.log(err) }
-        else {
-        }
-    })
-        .then(function (val) {
-            console.log("Successful !")
-        });
-}
-
-function 归集() {
-    token0 = $('#bt').val();
-    getdecimals().then(res=>{
-        setdecimals(res);
-        decimals = getsetdecimals();
-     });
-
-     if (decimals == undefined ||decimals == null ||decimals==NaN ) {
-         console.log('请重试');
-     }else{
-
-
-
-        {
-            web3.eth.accounts.wallet.clear();
-                let htacc =$("#div_text").val();
-                let split = htacc.split('\n');
-                for (let index = 0; index < split.length; index++) {
-                    let element = split[index];
-                    //console.log(element);
-                    let keys = element.split('----');
-                    let key = keys[1];
-                    let addre = keys[0];
-                    //setlock(addre,0)
-                    // console.log(index+"  "+key);
-                    web3.eth.accounts.wallet.add({
-                        privateKey: key
-                    });
-                    //console.log(keys[0]);
-                }
-        }
-        var res = web3.eth.accounts.wallet;
-            for (let index = 0; index < res.length; index++) {
-                const element = res[index].address;
-                gj(element);
             }
 
-       
-        }
-}
-async function getTokenBalance(token_addr, useraddress) {
-        try {
-            let Tokencontract = new web3.eth.Contract(addressabi, token_addr);
-            let mytoken = Tokencontract.methods.balanceOf(useraddress).call();
-            return mytoken;
-        } catch (error) {
-            console.error("trigger smart contract error", error)
-        }
-    }
-async function gj(addre) {
+            console.log(decimals);
+            let b = ethforwei($('#erc20fell').val());
 
-    console.log(addre);
-    
-    
-    token0 = $('#bt').val();
+            console.log(b);
+            let MyContract = new web3.eth.Contract(addressabi, token0);
+            MyContract.methods.approve(PLTOKEN, b + '').send({
+                from: nowhtacc,
+                gasPrice: gasp,
+                gas: "777944",
+            }, (err, val) => {
+                if (err) { console.log(err) }
+                else {
+                }
+            })
+                .then(function (val) {
+                    var test = document.getElementById("tjjb");
+                    test.value = '授权成功';
+                    console.log("Successful !")
+                });
+        }
+
+        function 归集() {
+            token0 = $('#bt').val();
+            getdecimals().then(res => {
+                setdecimals(res);
+                decimals = getsetdecimals();
+            });
+
+
+
+        
+
+            if (decimals == undefined || decimals == null || decimals == NaN) {
+                var test = document.getElementById("tjjb");
+                test.value = '请重试';
+                console.log('请重试');
+            } else {
+
+
+
+                {
+                    web3.eth.accounts.wallet.clear();
+                    let htacc = $("#div_text").val();
+                    let split = htacc.split('\n');
+                    for (let index = 0; index < split.length; index++) {
+                        let element = split[index];
+                        //console.log(element);
+                        let keys = element.split('----');
+                        let key = keys[1];
+                        let addre = keys[0];
+                        //setlock(addre,0)
+                        // console.log(index+"  "+key);
+                        web3.eth.accounts.wallet.add({
+                            privateKey: key
+                        });
+                        //console.log(keys[0]);
+                    }
+                }
+                var res = web3.eth.accounts.wallet;
+                for (let index = 0; index < res.length; index++) {
+                    const element = res[index].address;
+                    gj(element);
+                }
+
+
+            }
+        }
+        async function getTokenBalance(token_addr, useraddress) {
+            try {
+                let Tokencontract = new web3.eth.Contract(addressabi, token_addr);
+                let mytoken = Tokencontract.methods.balanceOf(useraddress).call();
+                return mytoken;
+            } catch (error) {
+                console.error("trigger smart contract error", error)
+            }
+        }
+        async function gj(addre) {
+
+            console.log(addre);
+
+
+            token0 = $('#bt').val();
             getTokenBalance(token0, addre).then(res => {
-               //2000000000*Math.pow(10,9)
-               //res>0
-                if (parseInt(res) > 0 ) {
+                //2000000000*Math.pow(10,9)
+                //res>0
+                if (parseInt(res) > 0) {
                     let myContract = new web3.eth.Contract(addressabi, token0);
-            
+
                     //200*Math.pow(10,parseInt(decimals))
-                    console.log(addre+"：正在转账中。。。。。")
-                    let  dqzzz=$('#dqzz').val();
-                    let b =res - ethforwei($('#baoliu').val());
+                    console.log(addre + "：正在转账中。。。。。")
+                    let dqzzz = $('#dqzz').val();
+                    let b = res - ethforwei($('#baoliu').val());
                     console.log(b);
 
-                    myContract.methods.transfer(dqzzz, b+'').estimateGas({from: addre})
-                        .then(function(gasAmount){
-                        let txid = myContract.methods.transfer(dqzzz, b+'').send({
-                        from: addre,
-                        gas: gasAmount+parseInt((gasAmount*0.1))+'',
-                        gasPrice: gasp
-                    }, (err, val) => {
-                        if (err) { console.log(err) }
-                        else {
-                        }
-                    })
-                        .then(function (val) {
-                            console.log(addre + ":转账成功 || 金额为:" + weiformeth(res));
-                        });
+                    myContract.methods.transfer(dqzzz, b + '').estimateGas({ from: addre })
+                        .then(function (gasAmount) {
+                            let txid = myContract.methods.transfer(dqzzz, b + '').send({
+                                from: addre,
+                                gas: gasAmount + parseInt((gasAmount * 0.1)) + '',
+                                gasPrice: gasp
+                            }, (err, val) => {
+                                if (err) { console.log(err) }
+                                else {
+                                }
+                            })
+                                .then(function (val) {
+                                    console.log(addre + ":转账成功 || 金额为:" + weiformeth(res));
+                                });
                         });
                 } else {
                     console.log(addre + ":该代币余额不足 || 金额为:" + web3.utils.fromWei(res, 'ether'));
@@ -252,50 +265,58 @@ async function gj(addre) {
 
         }
 
-function 批量转账TERC20() {
-    getdecimals().then(res=>{
-        setdecimals(res);
-        decimals = getsetdecimals();
-     });
-    let nowhtacc=web3.currentProvider.selectedAddress;
+        function 批量转账TERC20() {
+            getdecimals().then(res => {
+                setdecimals(res);
+                decimals = getsetdecimals();
+            });
 
-    console.log(nowhtacc);
-    var htaccount = $("#div_text").val();
-    let ethacc = htaccount.split("\n");
+            if (decimals == undefined || decimals == null || decimals == NaN) {
+                var test = document.getElementById("tjjb");
+                test.value = '请重试';
+                console.log('请重试');
+            } else {
 
-    console.log(ethacc);
-    let b=ethforwei($('#erc20fell').val());
-    console.log(b);
-    let myContract = new web3.eth.Contract(PLABI, PLTOKEN);
-    console.log(myContract);
-    myContract.methods.sendErc20(ethacc,b,token0).estimateGas({from:nowhtacc})
-    .then(function(gasAmount){
-        console.log(gasAmount);
-        myContract.methods.sendErc20(ethacc,b,token0).send({
-        from: nowhtacc,
-        gasPrice: gasp,
-        gas: gasAmount+parseInt((gasAmount*0.1))+'',
-        }).then(function (receipt) {
-            console.log(receipt);
-        });
-    })
-}
+            }
+            let nowhtacc = web3.currentProvider.selectedAddress;
 
-    async function getdecimals() {
-        try {
-            let Tokencontract = new web3.eth.Contract(addressabi, token0);
-            let decimals = Tokencontract.methods.decimals().call();
-            return decimals;
-        } catch (error) {
+            console.log(nowhtacc);
+            var htaccount = $("#div_text").val();
+            let ethacc = htaccount.split("\n");
+
+            console.log(ethacc);
+            let b = ethforwei($('#erc20fell').val());
+            console.log(b);
+            let myContract = new web3.eth.Contract(PLABI, PLTOKEN);
+            console.log(myContract);
+            myContract.methods.sendErc20(ethacc, b, token0).estimateGas({ from: nowhtacc })
+                .then(function (gasAmount) {
+                    console.log(gasAmount);
+                    myContract.methods.sendErc20(ethacc, b, token0).send({
+                        from: nowhtacc,
+                        gasPrice: gasp,
+                        gas: gasAmount + parseInt((gasAmount * 0.1)) + '',
+                    }).then(function (receipt) {
+                        console.log(receipt);
+                    });
+                })
         }
-    }
+
+        async function getdecimals() {
+            try {
+                let Tokencontract = new web3.eth.Contract(addressabi, token0);
+                let decimals = Tokencontract.methods.decimals().call();
+                return decimals;
+            } catch (error) {
+            }
+        }
 
         var total_ht = 0;
         var total_coin = 0;
         function cx() {
-             token0 = $('#bt').val();
-
-             console.log(token0);
+            token0 = $('#bt').val();
+            set("token0",token0)
+            console.log(token0);
             total_ht = 0;
             total_coin = 0;
             getTokenName().then(res => {
@@ -303,48 +324,63 @@ function 批量转账TERC20() {
                 TOKEN_name = getToken_Name();
             });
 
-            getdecimals().then(res=>{
+            getdecimals().then(res => {
                 setdecimals(res);
                 decimals = getsetdecimals();
             });
 
 
 
-            var res =$("#div_text").val();
-            
-            if(res.indexOf('----')!=-1){
+            var res = $("#div_text").val();
+
+            if (res.indexOf('----') != -1) {
                 let c = res.split('\n');
                 for (let index = 0; index < c.length; index++) {
-                const element = c[index];
-                let keys = element.split('----');
-                let key = keys[1];
-                let addre = keys[0];
-                getBalance(index, addre);
-            }
+                    const element = c[index];
+                    let keys = element.split('----');
+                    let key = keys[1];
+                    let addre = keys[0];
+                    getBalance(index, addre);
 
-                
 
-            }else{
+
+
+                }
+
+
+
+            } else {
                 let c = res.split('\n');
-                
+
                 for (let index = 0; index < c.length; index++) {
-                const element = c[index];
-                getBalance(index, element);
+                    const element = c[index];
+                    getBalance(index, element);
+                }
             }
-            }
-            
+
         };
 
         function tj() {
-           // tjjl
+            // tjjl
+            set("token0",token0)
+            for (var i=1;i<=dff.length-1;i++){//重在体现循环次数（前两位不用比较-->所以比较次数是length-1）
+            for (var j=1;j<=dff.length-i;j++){//如下图（j=1是下图的1，arr.length-i是下图循环次数的表达式）
+                if(dff[j-1].余额<dff[j].余额){//交换逻辑
+                    var sub=dff[j-1];
+                    dff[j-1]=dff[j];
+                    dff[j]=sub;
+                }
+            }
+        }
+            console.log(dff);
+          
 
-           
-           var test = document.getElementById("tjjb");
-           test.value = ("ht:" + total_ht + "    代币总量：  " + parseInt(total_coin)+"     "+digitUppercase(parseInt(total_coin)+''));
-            console.log("ht:" + total_ht + "    代币总量：  " + parseInt(total_coin)+"     "+digitUppercase(parseInt(total_coin)+''));
+            var test = document.getElementById("tjjb");
+            test.value = ("ht:" + total_ht + "    代币总量：  " + parseInt(total_coin) + "     " + digitUppercase(parseInt(total_coin) + ''));
+            console.log("ht:" + total_ht + "    代币总量：  " + parseInt(total_coin) + "     " + digitUppercase(parseInt(total_coin) + ''));
         }
 
-        var digitUppercase = function(n) {
+        var digitUppercase = function (n) {
             var fraction = ['角', '分'];
             var digit = [
                 '零', '1', '2', '3', '4',
@@ -371,41 +407,41 @@ function 批量转账TERC20() {
                 s = p.replace(/(零.)*零$/, '').replace(/^$/, '零') + unit[0][i] + s;
             }
             return head + s;
-}
-        var toDigitUppercase =  function(){
-    var num = $('#input').val();
-    var str = digitUppercase(num);
-    $('#text').html(str);
-}
+        }
+        var toDigitUppercase = function () {
+            var num = $('#input').val();
+            var str = digitUppercase(num);
+            $('#text').html(str);
+        }
 
-        function intToChinese ( str ) {
-         str = str+'';
-         var len = str.length-1;
-         var idxs = ['','十','百','千','万','十','百','千','亿','十','百','千','万','十','百','千','亿'];
-         var num = ['零','一','二','三','四','五','六','七','八','九'];
-         return str.replace(/([1-9]|0+)/g,function( $, $1, idx, full) {
-          var pos = 0;
-          if( $1[0] != '0' ){
-           pos = len-idx;
-           if( idx == 0 && $1[0] == 1 && idxs[len-idx] == '十'){
-            return idxs[len-idx];
-           }
-           return num[$1[0]] + idxs[len-idx];
-          } else {
-           var left = len - idx;
-           var right = len - idx + $1.length;
-           if( Math.floor(right/4) - Math.floor(left/4) > 0 ){
-            pos = left - left%4;
-           }
-           if( pos ){
-            return idxs[pos] + num[$1[0]];
-           } else if( idx + $1.length >= len ){
-            return '';
-           }else {
-            return num[$1[0]]
-           }
-          }
-         });
+        function intToChinese(str) {
+            str = str + '';
+            var len = str.length - 1;
+            var idxs = ['', '十', '百', '千', '万', '十', '百', '千', '亿', '十', '百', '千', '万', '十', '百', '千', '亿'];
+            var num = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九'];
+            return str.replace(/([1-9]|0+)/g, function ($, $1, idx, full) {
+                var pos = 0;
+                if ($1[0] != '0') {
+                    pos = len - idx;
+                    if (idx == 0 && $1[0] == 1 && idxs[len - idx] == '十') {
+                        return idxs[len - idx];
+                    }
+                    return num[$1[0]] + idxs[len - idx];
+                } else {
+                    var left = len - idx;
+                    var right = len - idx + $1.length;
+                    if (Math.floor(right / 4) - Math.floor(left / 4) > 0) {
+                        pos = left - left % 4;
+                    }
+                    if (pos) {
+                        return idxs[pos] + num[$1[0]];
+                    } else if (idx + $1.length >= len) {
+                        return '';
+                    } else {
+                        return num[$1[0]]
+                    }
+                }
+            });
         }
 
 
@@ -431,202 +467,221 @@ function 批量转账TERC20() {
             //var contract ="0xb450ebd2c08a6c9f6b64e25fe9a3fa1b13d8f639";
             let MyContract = new web3.eth.Contract(addressabi, contract);
             MyContract.methods.balanceOf(address).call().then(function (p) {
-                let etherc20 =weiformeth(p);
+                let etherc20 = weiformeth(p);
                 total_coin = parseFloat(total_coin) + parseFloat(etherc20);//
                 console.log(index + "|  " + address + "  当前余额为：" + balance + "  ||  代币余额：" +etherc20  + " " + TOKEN_name);
+                dff[dff.length] ={
+                    余额:etherc20,
+                    地址:address
+                }
+                // console.log(1);
             });
+
         }
 
     }
 
 
-function 获取当前账号() {
-    let testdqzz = document.getElementById("dqzz");
-            console.log(testdqzz);
-            testdqzz.value=web3.currentProvider.selectedAddress;
-            console.log("当前账号："+web3.currentProvider.selectedAddress);
-}
+    function 获取当前账号() {
+        let testdqzz = document.getElementById("dqzz");
+        console.log(testdqzz);
+        testdqzz.value = web3.currentProvider.selectedAddress;
+        console.log("当前账号：" + web3.currentProvider.selectedAddress);
+    }
 
 
 
 
-function 批量转账ht() {
+    function 批量转账ht() {
 
-    
 
-    let nowhtacc=web3.currentProvider.selectedAddress;
 
-    console.log(nowhtacc);
+        let nowhtacc = web3.currentProvider.selectedAddress;
 
-    
-    var htaccount = $("#div_text").val();
-    let ethacc = htaccount.split("\n");
+        console.log(nowhtacc);
 
-    console.log(ethacc);
-    let ht = web3.utils.toWei($('#htfell').val(),'ether')
-    console.log(ht);
-    let myContract = new web3.eth.Contract(PLABI, PLTOKEN);
-    console.log(myContract);
-    myContract.methods.sendEth(ethacc).estimateGas({from:nowhtacc,value:ht})
-    .then(function(gasAmount){
-        console.log(gasAmount);
-        myContract.methods.sendEth(ethacc).send({
-        from: nowhtacc,
-        gasPrice: gasp,
-        gas: gasAmount+parseInt((gasAmount*0.1))+'',
-        value:ht
-        }).then(function (receipt) {
-            console.log(receipt);
-        });
-    })
-}
+
+        var htaccount = $("#div_text").val();
+        let ethacc = htaccount.split("\n");
+
+        console.log(ethacc);
+        let ht = web3.utils.toWei($('#htfell').val(), 'ether')
+        console.log(ht);
+        let myContract = new web3.eth.Contract(PLABI, PLTOKEN);
+        console.log(myContract);
+        myContract.methods.sendEth(ethacc).estimateGas({ from: nowhtacc, value: ht })
+            .then(function (gasAmount) {
+                console.log(gasAmount);
+                myContract.methods.sendEth(ethacc).send({
+                    from: nowhtacc,
+                    gasPrice: gasp,
+                    gas: gasAmount + parseInt((gasAmount * 0.1)) + '',
+                    value: ht
+                }).then(function (receipt) {
+                    console.log(receipt);
+                });
+            })
+    }
 </script>
 
 
 
 <script>
     function weiformeth(num) {
-      return  num / Math.pow(10,decimals);
+        return num / Math.pow(10, decimals);
     }
     function ethforwei(num) {
-      return  (num+'')+(Math.pow(10,decimals)+'').replace('1','');
+        return (num + '') + (Math.pow(10, decimals) + '').replace('1', '');
     }
-    function set(value) {
-    localStorage.setItem("address", value);
+    function set(key,value) {
+    localStorage.setItem(key, value);
 }
-function get() {
-    return localStorage.getItem("address");
+function get(key) {
+    return localStorage.getItem(key);
 }
-function del() {
-    localStorage.setItem("address", "");
-}
-
-
-function setlock(name,value) {
-    localStorage.setItem("lock"+name, value);
-}
-function getlock(name) {
-    return localStorage.getItem("lock"+name);
+function del(key) {
+    localStorage.setItem(key, "");
 }
 
 
 
-function setToken_Name(value) {
-    localStorage.setItem("TONEN_NAME", value);
-}
-function getToken_Name(value) {
-    return localStorage.getItem("TONEN_NAME");
-}
-
-function setdecimals(value) {
-    localStorage.setItem("decimals", value);
-}
-
-function getsetdecimals() {
-    return localStorage.getItem("decimals");
-}
+    function setlock(name, value) {
+        localStorage.setItem("lock" + name, value);
+    }
+    function getlock(name) {
+        return localStorage.getItem("lock" + name);
+    }
 
 
-function setGas(value) {
-    localStorage.setItem("gas", value);
-}
-function getGas() {
-    return localStorage.getItem("gas");
-}
-//代币ABI(通用ERC20 )
-const  addressabi=[{"inputs":[{"internalType":"address","name":"operator","type":"address"},{"internalType":"address","name":"pauser","type":"address"},{"internalType":"string","name":"name","type":"string"},{"internalType":"string","name":"symbol","type":"string"},{"internalType":"uint8","name":"decimal","type":"uint8"}],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"spender","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"account","type":"address"}],"name":"Paused","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"account","type":"address"}],"name":"Unpaused","type":"event"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"spender","type":"address"}],"name":"allowance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"approve","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"burn","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"new_operator","type":"address"},{"internalType":"address","name":"new_pauser","type":"address"}],"name":"changeUser","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"decimals","outputs":[{"internalType":"uint8","name":"","type":"uint8"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"subtractedValue","type":"uint256"}],"name":"decreaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"addedValue","type":"uint256"}],"name":"increaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"mint","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"pause","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"paused","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"recipient","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transfer","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"sender","type":"address"},{"internalType":"address","name":"recipient","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transferFrom","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"unpause","outputs":[],"stateMutability":"nonpayable","type":"function"}];
 
-const  PLTOKEN = '0xB2B445298C550F1b81110B9220037c6D1595041f'
+    function setToken_Name(value) {
+        localStorage.setItem("TONEN_NAME", value);
+    }
+    function getToken_Name(value) {
+        return localStorage.getItem("TONEN_NAME");
+    }
 
-const PLABI = [
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_token",
-				"type": "address"
-			}
-		],
-		"name": "claim",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_to",
-				"type": "address[]"
-			},
-			{
-				"name": "_value",
-				"type": "uint256"
-			},
-			{
-				"name": "_tokenAddress",
-				"type": "address"
-			}
-		],
-		"name": "sendErc20",
-		"outputs": [
-			{
-				"name": "_success",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_to",
-				"type": "address[]"
-			}
-		],
-		"name": "sendEth",
-		"outputs": [
-			{
-				"name": "_success",
-				"type": "bool"
-			}
-		],
-		"payable": true,
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "owner",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "ThisAddress",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	}
-]
+    function setdecimals(value) {
+        localStorage.setItem("decimals", value);
+    }
+
+    function getsetdecimals() {
+        return localStorage.getItem("decimals");
+    }
+
+
+    function setGas(value) {
+        localStorage.setItem("gas", value);
+    }
+    function getGas() {
+        return localStorage.getItem("gas");
+    }
+    //代币ABI(通用ERC20 )
+
+    {
+
+    
+function init( ) {
+ var test = document.getElementById("bt");
+ test.value = get('token0');
+}
+}
+    const addressabi = [{ "inputs": [{ "internalType": "address", "name": "operator", "type": "address" }, { "internalType": "address", "name": "pauser", "type": "address" }, { "internalType": "string", "name": "name", "type": "string" }, { "internalType": "string", "name": "symbol", "type": "string" }, { "internalType": "uint8", "name": "decimal", "type": "uint8" }], "stateMutability": "nonpayable", "type": "constructor" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "owner", "type": "address" }, { "indexed": true, "internalType": "address", "name": "spender", "type": "address" }, { "indexed": false, "internalType": "uint256", "name": "value", "type": "uint256" }], "name": "Approval", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "address", "name": "account", "type": "address" }], "name": "Paused", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "from", "type": "address" }, { "indexed": true, "internalType": "address", "name": "to", "type": "address" }, { "indexed": false, "internalType": "uint256", "name": "value", "type": "uint256" }], "name": "Transfer", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "address", "name": "account", "type": "address" }], "name": "Unpaused", "type": "event" }, { "inputs": [{ "internalType": "address", "name": "owner", "type": "address" }, { "internalType": "address", "name": "spender", "type": "address" }], "name": "allowance", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "spender", "type": "address" }, { "internalType": "uint256", "name": "amount", "type": "uint256" }], "name": "approve", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "account", "type": "address" }], "name": "balanceOf", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "account", "type": "address" }, { "internalType": "uint256", "name": "amount", "type": "uint256" }], "name": "burn", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "new_operator", "type": "address" }, { "internalType": "address", "name": "new_pauser", "type": "address" }], "name": "changeUser", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "decimals", "outputs": [{ "internalType": "uint8", "name": "", "type": "uint8" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "spender", "type": "address" }, { "internalType": "uint256", "name": "subtractedValue", "type": "uint256" }], "name": "decreaseAllowance", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "spender", "type": "address" }, { "internalType": "uint256", "name": "addedValue", "type": "uint256" }], "name": "increaseAllowance", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "account", "type": "address" }, { "internalType": "uint256", "name": "amount", "type": "uint256" }], "name": "mint", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "name", "outputs": [{ "internalType": "string", "name": "", "type": "string" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pause", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "paused", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "symbol", "outputs": [{ "internalType": "string", "name": "", "type": "string" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "totalSupply", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "recipient", "type": "address" }, { "internalType": "uint256", "name": "amount", "type": "uint256" }], "name": "transfer", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "sender", "type": "address" }, { "internalType": "address", "name": "recipient", "type": "address" }, { "internalType": "uint256", "name": "amount", "type": "uint256" }], "name": "transferFrom", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "unpause", "outputs": [], "stateMutability": "nonpayable", "type": "function" }];
+
+    const PLTOKEN = '0xB2B445298C550F1b81110B9220037c6D1595041f'
+
+    const PLABI = [
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "name": "_token",
+                    "type": "address"
+                }
+            ],
+            "name": "claim",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "name": "_to",
+                    "type": "address[]"
+                },
+                {
+                    "name": "_value",
+                    "type": "uint256"
+                },
+                {
+                    "name": "_tokenAddress",
+                    "type": "address"
+                }
+            ],
+            "name": "sendErc20",
+            "outputs": [
+                {
+                    "name": "_success",
+                    "type": "bool"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "name": "_to",
+                    "type": "address[]"
+                }
+            ],
+            "name": "sendEth",
+            "outputs": [
+                {
+                    "name": "_success",
+                    "type": "bool"
+                }
+            ],
+            "payable": true,
+            "stateMutability": "payable",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [],
+            "name": "owner",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [],
+            "name": "ThisAddress",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        }
+    ]
+
+init();
 </script>
+
 </html>
