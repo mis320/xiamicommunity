@@ -153,10 +153,14 @@
 
             console.log(b);
             let MyContract = new web3.eth.Contract(addressabi, token0);
-            MyContract.methods.approve(PLTOKEN, b + '').send({
+
+            MyContract.methods.approve(PLTOKEN, b + '').estimateGas({from:nowhtacc}).then(res=>{
+
+                console.log(res);
+                MyContract.methods.approve(PLTOKEN, b + '').send({
                 from: nowhtacc,
                 gasPrice: gasp,
-                gas: "777944",
+                gas: res,
             }, (err, val) => {
                 if (err) { console.log(err) }
                 else {
@@ -167,6 +171,10 @@
                     test.value = '授权成功';
                     console.log("Successful !")
                 });
+            })
+
+
+           
         }
 
         function 归集() {
@@ -362,7 +370,6 @@
 
         function tj() {
             // tjjl
-             token0 = $('#bt').val();
             set("token0",token0)
             for (var i=1;i<=dff.length-1;i++){//重在体现循环次数（前两位不用比较-->所以比较次数是length-1）
             for (var j=1;j<=dff.length-i;j++){//如下图（j=1是下图的1，arr.length-i是下图循环次数的表达式）
