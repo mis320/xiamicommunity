@@ -26,21 +26,21 @@
             text-decoration: none;
             text-shadow: 0px 3px 0px #7cacde;
         }
-
+        
         .myButton:hover {
             background-color: #468ccf;
         }
-
+        
         .myButton:active {
             position: relative;
             top: 1px;
         }
-
+        
         #bigdiv {
             margin: 5% 10% 0;
             /* border: solid 1px red; */
         }
-
+        
         .zuo {
             /* border: solid 1px red; */
             width: 800px;
@@ -48,7 +48,7 @@
             float: left;
             margin-bottom: 10px;
         }
-
+        
         .you {
             /* border: solid 1px red; */
             width: 750px;
@@ -57,13 +57,12 @@
             margin-bottom: 10px;
             /* display: flex; */
         }
-
-
+        
         .right {
             float: right;
             /* margin-bottom: 8px; */
         }
-
+        
         .zuoipt {
             border-radius: 5px;
             width: 400px;
@@ -72,7 +71,7 @@
             border: 0;
             background-image: url(img/左气泡.png);
         }
-
+        
         .youipt {
             height: 39px;
             border-radius: 5px;
@@ -81,7 +80,7 @@
             border: 0;
             background-image: url(img/右气泡.png);
         }
-
+        
         .btn {
             color: black;
             background-color: rgba(94, 209, 255, 0.856);
@@ -92,7 +91,7 @@
             border-color: plum;
             font-size: 12px;
         }
-
+        
         #announcement {
             display: flex;
             flex-direction: column;
@@ -101,16 +100,14 @@
             height: 270px;
             width: 750px;
             border-radius: 10px;
-            border: 1px solid rgb(177, 177, 177);
-            
         }
-
+        
         .Position {
             position: relative;
             top: 20px;
             left: -75px;
         }
-
+        
         .zuo-btn {
             float: right;
             position: relative;
@@ -125,7 +122,7 @@
             margin-right: 8px;
             border-color: plum;
         }
-
+        
         .zuo-btna {
             float: right;
             position: relative;
@@ -140,16 +137,16 @@
             margin-right: 8px;
             border-color: plum;
         }
-
+        
         .a {
             width: 500px;
         }
-
+        
         .dsc {
             font-family: "楷体";
             font-size: 20px;
         }
-
+        
         .youdiv {
             /* border: solid 1px green; */
             width: 600px;
@@ -167,8 +164,7 @@
             <img src="img/123456.jpg" alt="123" style="width: 70px;height: 70px;float: left;">
             <span style="color:purple;margin-left: 10px;" class="dsc">代币合约</span>
             <div class="layui-input-block a">
-                <input id="bt" value="0x64ff637fb478863b7468bc97d30a5bf3a428a1fd" type="text" name="title"
-                    style="margin-left:-30px;;" lay-verify="required" autocomplete="off" class="layui-input zuoipt">
+                <input id="bt" value="0x64ff637fb478863b7468bc97d30a5bf3a428a1fd" type="text" name="title" style="margin-left:-30px;;" lay-verify="required" autocomplete="off" class="layui-input zuoipt">
             </div>
         </div>
 
@@ -179,8 +175,7 @@
             <div class="youdiv" style="display: flex;justify-content: center;align-items: center;">
                 <!-- <button class="btn dsc" style="margin-top: 0px;">获取当前帐号</button> -->
                 <a class="myButton" class="btn dsc" style="margin-right: 10px;" onclick="获取当前账号()">获取当前账号</a>
-                <input id="dqzz" type="text" name="title" lay-verify="required" autocomplete="off"
-                    class="layui-input right youipt">
+                <input id="dqzz" type="text" name="title" lay-verify="required" autocomplete="off" class="layui-input right youipt">
 
 
             </div>
@@ -197,8 +192,7 @@
             <img src="img/123456.jpg" alt="123" style="width: 70px;height: 70px;float: left;">
             <span style="color:orange;margin-left: 10px;" class="dsc">目前支持所有链切换小狐狸钱包网络就行了先查询后统计</span>
             <div class="layui-input-block" style="display: flex;justify-content: center;align-items: center;width: 580px;">
-                <input id="tjjb" value="........." type="text" name="title" style="margin-left:-40px;width: 700px;"
-                    lay-verify="required" autocomplete="off" class="layui-input zuoipt">
+                <input id="tjjb" value="........." type="text" name="title" style="margin-left:-40px;width: 700px;" lay-verify="required" autocomplete="off" class="layui-input zuoipt">
                 <!-- <button class="zuo-btn dsc">统计代币</button>
                 <button class="zuo-btn dsc">查询代币</button> -->
                 <a class="myButton" style="width: 140px;margin-left: 20px;" onclick="cx()">查询代币</a>
@@ -210,15 +204,14 @@
 
         <div class="you">
             <img src="img/456879.jpg" alt="123" style="width: 60px;height: 80px;float: right;">
-                <span style="color:rgb(219, 118, 219);" class="right dsc">目前支持HT,BNB请输入转账金额(平分给所有账号)</span>
-                <div class="youdiv" style="display: flex;justify-content: center;align-items: center;margin-right: 0px;width: 650px;">
-                    <!-- <button class="btn dsc" style="margin-top: 0px;">获取当前帐号</button> -->
-                    <a class="myButton" style="width: 120px;margin-right: 20px;" onclick="批量转账ht()">批量转账矿工费</a>
-                    <input id="htfell" value="0.1" type="text" name="title" lay-verify="required" autocomplete="off"
-                    class="layui-input right youipt">
-    
-    
-                </div>
+            <span style="color:rgb(219, 118, 219);" class="right dsc">目前支持HT,BNB请输入转账金额(平分给所有账号)</span>
+            <div class="youdiv" style="display: flex;justify-content: center;align-items: center;margin-right: 0px;width: 650px;">
+                <!-- <button class="btn dsc" style="margin-top: 0px;">获取当前帐号</button> -->
+                <a class="myButton" style="width: 120px;margin-right: 20px;" onclick="批量转账ht()">批量转账矿工费</a>
+                <input id="htfell" value="0.1" type="text" name="title" lay-verify="required" autocomplete="off" class="layui-input right youipt">
+
+
+            </div>
         </div>
 
 
@@ -227,8 +220,7 @@
             <span style="color:rgba(255, 166, 0, 0.932);margin-left: 10px;" class="dsc">目前支持HT,BNB只支持整数每个帐号转多少币 /
                 授erc20额度</span>
             <div style="display: flex;align-items: center;">
-                <input id="erc20fell" value="1" type="text" name="title"
-                    lay-verify="required" autocomplete="off" class="layui-input zuoipt">
+                <input id="erc20fell" value="1" type="text" name="title" lay-verify="required" autocomplete="off" class="layui-input zuoipt">
                 <!-- <button class="zuo-btn dsc">统计代币</button>
                 <button class="zuo-btn dsc">查询代币</button> -->
                 <a class="myButton" style="width: 100px;margin-left: 20px;" onclick="授权TERC20()">授权TERC20</a>
@@ -250,8 +242,8 @@
             </div>
             <!--  <button class="zuo-btna dsc" style="width: 150px;">批量转账erc20代币</button>
             <button class="zuo-btna dsc">授权erc20</button> -->
-            
-             <!-- <span class="Position dsc" style="color: rgba(255, 166, 0, 0.932);">用多少授权多少代币</span>
+
+        <!-- <span class="Position dsc" style="color: rgba(255, 166, 0, 0.932);">用多少授权多少代币</span>
         </div> -->
 
 
@@ -262,8 +254,8 @@
                 <div style="display: flex;">
                     <input id="baoliu" value="0" type="text" name="title" lay-verify="required" autocomplete="off"
                     class="layui-input right youipt"> -->
-                <!--  <button class="btn dsc">归集</button> -->
-                <!-- <a class="myButton" onclick="归集()">归集</a>
+        <!--  <button class="btn dsc">归集</button> -->
+        <!-- <a class="myButton" onclick="归集()">归集</a>
                 </div>
                 
             </div>
@@ -272,16 +264,15 @@
         <div class="you">
             <img src="img/456879.jpg" alt="123" style="width: 60px;height: 80px;float: right;">
             <span style="color:rgb(219, 13, 13);" class="right dsc">目前支持所有链每个账号保存多少代币</span>
-                <div class="youdiv" style="display: flex;justify-content: center;align-items: center;margin-right: -20px;">
-                    <!-- <button class="btn dsc" style="margin-top: 0px;">获取当前帐号</button> -->
-                    <a class="myButton" style="margin-right: 20px;" onclick="归集()">归集</a>
-                    <input id="baoliu" value="0" type="text" name="title" lay-verify="required" autocomplete="off"
-                    class="layui-input right youipt">
+            <div class="youdiv" style="display: flex;justify-content: center;align-items: center;margin-right: -20px;">
+                <!-- <button class="btn dsc" style="margin-top: 0px;">获取当前帐号</button> -->
+                <a class="myButton" style="margin-right: 20px;" onclick="归集()">归集</a>
+                <input id="baoliu" value="0" type="text" name="title" lay-verify="required" autocomplete="off" class="layui-input right youipt">
                 <!--  <button class="btn dsc">归集</button> -->
-               
-    
-    
-                </div>
+
+
+
+            </div>
         </div>
 
     </div>
@@ -298,7 +289,6 @@
 
 
 <script>
-
     {
         // getTokenName().then(res=>{setToken_Name(res)})
         var token0 = '0x64ff637fb478863b7468bc97d30a5bf3a428a1fd';
@@ -315,13 +305,13 @@
                 web3Provider = window.ethereum;
                 try {
                     // 请求用户授权
-                    window.ethereum.enable
+                    window.ethereum.enable()
                 } catch (error) {
                     // 用户不授权时
                     console.error("User denied account access")
                 }
             }
-            var web3 = new Web3(web3Provider);//web3js就是你需要的web3实例
+            var web3 = new Web3(web3Provider); //web3js就是你需要的web3实例
 
             var res = web3.currentProvider;
 
@@ -362,8 +352,7 @@
                 let Tokencontract = new web3.eth.Contract(addressabi, token0);
                 let mytoken = Tokencontract.methods.symbol().call();
                 return mytoken;
-            } catch (error) {
-            }
+            } catch (error) {}
         }
 
 
@@ -378,14 +367,14 @@
             });
             var test = document.getElementById("tjjb");
             if (decimals == undefined || decimals == null || decimals == NaN) {
-               
+
                 test.value = '请重试';
                 console.log('请重试');
                 return;
             } else {
                 test.value = '正在授权中。。。。';
             }
-           
+
 
             console.log(decimals);
             let b = ethforwei($('#erc20fell').val());
@@ -393,19 +382,21 @@
             console.log(b);
             let MyContract = new web3.eth.Contract(addressabi, token0);
 
-            MyContract.methods.approve(PLTOKEN, b + '').estimateGas({ from: nowhtacc }).then(res => {
+            MyContract.methods.approve(PLTOKEN, b + '').estimateGas({
+                from: nowhtacc
+            }).then(res => {
 
                 console.log(res);
                 MyContract.methods.approve(PLTOKEN, b + '').send({
-                    from: nowhtacc,
-                    gasPrice: gasp,
-                    gas: res,
-                }, (err, val) => {
-                    if (err) { console.log(err) }
-                    else {
-                    }
-                })
-                    .then(function (val) {
+                        from: nowhtacc,
+                        gasPrice: gasp,
+                        gas: res,
+                    }, (err, val) => {
+                        if (err) {
+                            console.log(err)
+                        } else {}
+                    })
+                    .then(function(val) {
                         var test = document.getElementById("tjjb");
                         test.value = '授权成功';
                         console.log("Successful !")
@@ -487,18 +478,20 @@
                     let b = res - ethforwei($('#baoliu').val());
                     console.log(b);
 
-                    myContract.methods.transfer(dqzzz, b + '').estimateGas({ from: addre })
-                        .then(function (gasAmount) {
+                    myContract.methods.transfer(dqzzz, b + '').estimateGas({
+                            from: addre
+                        })
+                        .then(function(gasAmount) {
                             let txid = myContract.methods.transfer(dqzzz, b + '').send({
-                                from: addre,
-                                gas: gasAmount + parseInt((gasAmount * 0.1)) + '',
-                                gasPrice: gasp
-                            }, (err, val) => {
-                                if (err) { console.log(err) }
-                                else {
-                                }
-                            })
-                                .then(function (val) {
+                                    from: addre,
+                                    gas: gasAmount + parseInt((gasAmount * 0.1)) + '',
+                                    gasPrice: gasp
+                                }, (err, val) => {
+                                    if (err) {
+                                        console.log(err)
+                                    } else {}
+                                })
+                                .then(function(val) {
                                     console.log(addre + ":转账成功 || 金额为:" + weiformeth(res));
                                 });
                         });
@@ -534,14 +527,16 @@
             console.log(b);
             let myContract = new web3.eth.Contract(PLABI, PLTOKEN);
             console.log(myContract);
-            myContract.methods.sendErc20(ethacc, b, token0).estimateGas({ from: nowhtacc })
-                .then(function (gasAmount) {
+            myContract.methods.sendErc20(ethacc, b, token0).estimateGas({
+                    from: nowhtacc
+                })
+                .then(function(gasAmount) {
                     console.log(gasAmount);
                     myContract.methods.sendErc20(ethacc, b, token0).send({
                         from: nowhtacc,
                         gasPrice: gasp,
                         gas: gasAmount + parseInt((gasAmount * 0.1)) + '',
-                    }).then(function (receipt) {
+                    }).then(function(receipt) {
                         console.log(receipt);
                     });
                 })
@@ -552,12 +547,12 @@
                 let Tokencontract = new web3.eth.Contract(addressabi, token0);
                 let decimals = Tokencontract.methods.decimals().call();
                 return decimals;
-            } catch (error) {
-            }
+            } catch (error) {}
         }
 
         var total_ht = 0;
         var total_coin = 0;
+
         function cx() {
             token0 = $('#bt').val();
             set("token0", token0)
@@ -608,9 +603,9 @@
         function tj() {
             // tjjl
             set("token0", token0)
-            for (var i = 1; i <= dff.length - 1; i++) {//重在体现循环次数（前两位不用比较-->所以比较次数是length-1）
-                for (var j = 1; j <= dff.length - i; j++) {//如下图（j=1是下图的1，arr.length-i是下图循环次数的表达式）
-                    if (dff[j - 1].余额 < dff[j].余额) {//交换逻辑
+            for (var i = 1; i <= dff.length - 1; i++) { //重在体现循环次数（前两位不用比较-->所以比较次数是length-1）
+                for (var j = 1; j <= dff.length - i; j++) { //如下图（j=1是下图的1，arr.length-i是下图循环次数的表达式）
+                    if (dff[j - 1].余额 < dff[j].余额) { //交换逻辑
                         var sub = dff[j - 1];
                         dff[j - 1] = dff[j];
                         dff[j] = sub;
@@ -625,7 +620,7 @@
             console.log("ht:" + total_ht + "    代币总量：  " + parseInt(total_coin) + "     " + digitUppercase(parseInt(total_coin) + ''));
         }
 
-        var digitUppercase = function (n) {
+        var digitUppercase = function(n) {
             var fraction = ['角', '分'];
             var digit = [
                 '零', '1', '2', '3', '4',
@@ -653,7 +648,7 @@
             }
             return head + s;
         }
-        var toDigitUppercase = function () {
+        var toDigitUppercase = function() {
             var num = $('#input').val();
             var str = digitUppercase(num);
             $('#text').html(str);
@@ -664,7 +659,7 @@
             var len = str.length - 1;
             var idxs = ['', '十', '百', '千', '万', '十', '百', '千', '亿', '十', '百', '千', '万', '十', '百', '千', '亿'];
             var num = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九'];
-            return str.replace(/([1-9]|0+)/g, function ($, $1, idx, full) {
+            return str.replace(/([1-9]|0+)/g, function($, $1, idx, full) {
                 var pos = 0;
                 if ($1[0] != '0') {
                     pos = len - idx;
@@ -693,7 +688,7 @@
 
 
         async function getBalance(index, params) {
-            web3.eth.getBalance(params, function (err, p) {
+            web3.eth.getBalance(params, function(err, p) {
                 //精度18
                 //ETH转wei
                 //web3.utils.toWei('1', 'ether');
@@ -708,18 +703,19 @@
             // 	console.log(PromiseValue);
             // });	
         }
+
         function getexcontract(index, address, contract, balance) {
             //var contract ="0xb450ebd2c08a6c9f6b64e25fe9a3fa1b13d8f639";
             let MyContract = new web3.eth.Contract(addressabi, contract);
-            MyContract.methods.balanceOf(address).call().then(function (p) {
+            MyContract.methods.balanceOf(address).call().then(function(p) {
                 let etherc20 = weiformeth(p);
-                total_coin = parseFloat(total_coin) + parseFloat(etherc20);//
+                total_coin = parseFloat(total_coin) + parseFloat(etherc20); //
                 console.log(index + "|  " + address + "  当前余额为：" + balance + "  ||  代币余额：" + etherc20 + " " + TOKEN_name);
                 dff[dff.length] = {
-                    余额: etherc20,
-                    地址: address
-                }
-                // console.log(1);
+                        余额: etherc20,
+                        地址: address
+                    }
+                    // console.log(1);
             });
 
         }
@@ -754,15 +750,18 @@
         console.log(ht);
         let myContract = new web3.eth.Contract(PLABI, PLTOKEN);
         console.log(myContract);
-        myContract.methods.sendEth(ethacc).estimateGas({ from: nowhtacc, value: ht })
-            .then(function (gasAmount) {
+        myContract.methods.sendEth(ethacc).estimateGas({
+                from: nowhtacc,
+                value: ht
+            })
+            .then(function(gasAmount) {
                 console.log(gasAmount);
                 myContract.methods.sendEth(ethacc).send({
                     from: nowhtacc,
                     gasPrice: gasp,
                     gas: gasAmount + parseInt((gasAmount * 0.1)) + '',
                     value: ht
-                }).then(function (receipt) {
+                }).then(function(receipt) {
                     console.log(receipt);
                 });
             })
@@ -775,15 +774,19 @@
     function weiformeth(num) {
         return num / Math.pow(10, decimals);
     }
+
     function ethforwei(num) {
         return (num + '') + (Math.pow(10, decimals) + '').replace('1', '');
     }
+
     function set(key, value) {
         localStorage.setItem(key, value);
     }
+
     function get(key) {
         return localStorage.getItem(key);
     }
+
     function del(key) {
         localStorage.setItem(key, "");
     }
@@ -793,6 +796,7 @@
     function setlock(name, value) {
         localStorage.setItem("lock" + name, value);
     }
+
     function getlock(name) {
         return localStorage.getItem("lock" + name);
     }
@@ -802,6 +806,7 @@
     function setToken_Name(value) {
         localStorage.setItem("TONEN_NAME", value);
     }
+
     function getToken_Name(value) {
         return localStorage.getItem("TONEN_NAME");
     }
@@ -818,6 +823,7 @@
     function setGas(value) {
         localStorage.setItem("gas", value);
     }
+
     function getGas() {
         return localStorage.getItem("gas");
     }
@@ -831,101 +837,394 @@
             test.value = get('token0');
         }
     }
-    const addressabi = [{ "inputs": [{ "internalType": "address", "name": "operator", "type": "address" }, { "internalType": "address", "name": "pauser", "type": "address" }, { "internalType": "string", "name": "name", "type": "string" }, { "internalType": "string", "name": "symbol", "type": "string" }, { "internalType": "uint8", "name": "decimal", "type": "uint8" }], "stateMutability": "nonpayable", "type": "constructor" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "owner", "type": "address" }, { "indexed": true, "internalType": "address", "name": "spender", "type": "address" }, { "indexed": false, "internalType": "uint256", "name": "value", "type": "uint256" }], "name": "Approval", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "address", "name": "account", "type": "address" }], "name": "Paused", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "from", "type": "address" }, { "indexed": true, "internalType": "address", "name": "to", "type": "address" }, { "indexed": false, "internalType": "uint256", "name": "value", "type": "uint256" }], "name": "Transfer", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "address", "name": "account", "type": "address" }], "name": "Unpaused", "type": "event" }, { "inputs": [{ "internalType": "address", "name": "owner", "type": "address" }, { "internalType": "address", "name": "spender", "type": "address" }], "name": "allowance", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "spender", "type": "address" }, { "internalType": "uint256", "name": "amount", "type": "uint256" }], "name": "approve", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "account", "type": "address" }], "name": "balanceOf", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "account", "type": "address" }, { "internalType": "uint256", "name": "amount", "type": "uint256" }], "name": "burn", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "new_operator", "type": "address" }, { "internalType": "address", "name": "new_pauser", "type": "address" }], "name": "changeUser", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "decimals", "outputs": [{ "internalType": "uint8", "name": "", "type": "uint8" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "spender", "type": "address" }, { "internalType": "uint256", "name": "subtractedValue", "type": "uint256" }], "name": "decreaseAllowance", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "spender", "type": "address" }, { "internalType": "uint256", "name": "addedValue", "type": "uint256" }], "name": "increaseAllowance", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "account", "type": "address" }, { "internalType": "uint256", "name": "amount", "type": "uint256" }], "name": "mint", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "name", "outputs": [{ "internalType": "string", "name": "", "type": "string" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pause", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "paused", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "symbol", "outputs": [{ "internalType": "string", "name": "", "type": "string" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "totalSupply", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "recipient", "type": "address" }, { "internalType": "uint256", "name": "amount", "type": "uint256" }], "name": "transfer", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "sender", "type": "address" }, { "internalType": "address", "name": "recipient", "type": "address" }, { "internalType": "uint256", "name": "amount", "type": "uint256" }], "name": "transferFrom", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "unpause", "outputs": [], "stateMutability": "nonpayable", "type": "function" }];
+    const addressabi = [{
+        "inputs": [{
+            "internalType": "address",
+            "name": "operator",
+            "type": "address"
+        }, {
+            "internalType": "address",
+            "name": "pauser",
+            "type": "address"
+        }, {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+        }, {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+        }, {
+            "internalType": "uint8",
+            "name": "decimal",
+            "type": "uint8"
+        }],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+    }, {
+        "anonymous": false,
+        "inputs": [{
+            "indexed": true,
+            "internalType": "address",
+            "name": "owner",
+            "type": "address"
+        }, {
+            "indexed": true,
+            "internalType": "address",
+            "name": "spender",
+            "type": "address"
+        }, {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+        }],
+        "name": "Approval",
+        "type": "event"
+    }, {
+        "anonymous": false,
+        "inputs": [{
+            "indexed": false,
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+        }],
+        "name": "Paused",
+        "type": "event"
+    }, {
+        "anonymous": false,
+        "inputs": [{
+            "indexed": true,
+            "internalType": "address",
+            "name": "from",
+            "type": "address"
+        }, {
+            "indexed": true,
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+        }, {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+        }],
+        "name": "Transfer",
+        "type": "event"
+    }, {
+        "anonymous": false,
+        "inputs": [{
+            "indexed": false,
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+        }],
+        "name": "Unpaused",
+        "type": "event"
+    }, {
+        "inputs": [{
+            "internalType": "address",
+            "name": "owner",
+            "type": "address"
+        }, {
+            "internalType": "address",
+            "name": "spender",
+            "type": "address"
+        }],
+        "name": "allowance",
+        "outputs": [{
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+        }],
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "inputs": [{
+            "internalType": "address",
+            "name": "spender",
+            "type": "address"
+        }, {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+        }],
+        "name": "approve",
+        "outputs": [{
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+        }],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "inputs": [{
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+        }],
+        "name": "balanceOf",
+        "outputs": [{
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+        }],
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "inputs": [{
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+        }, {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+        }],
+        "name": "burn",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "inputs": [{
+            "internalType": "address",
+            "name": "new_operator",
+            "type": "address"
+        }, {
+            "internalType": "address",
+            "name": "new_pauser",
+            "type": "address"
+        }],
+        "name": "changeUser",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "inputs": [],
+        "name": "decimals",
+        "outputs": [{
+            "internalType": "uint8",
+            "name": "",
+            "type": "uint8"
+        }],
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "inputs": [{
+            "internalType": "address",
+            "name": "spender",
+            "type": "address"
+        }, {
+            "internalType": "uint256",
+            "name": "subtractedValue",
+            "type": "uint256"
+        }],
+        "name": "decreaseAllowance",
+        "outputs": [{
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+        }],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "inputs": [{
+            "internalType": "address",
+            "name": "spender",
+            "type": "address"
+        }, {
+            "internalType": "uint256",
+            "name": "addedValue",
+            "type": "uint256"
+        }],
+        "name": "increaseAllowance",
+        "outputs": [{
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+        }],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "inputs": [{
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+        }, {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+        }],
+        "name": "mint",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "inputs": [],
+        "name": "name",
+        "outputs": [{
+            "internalType": "string",
+            "name": "",
+            "type": "string"
+        }],
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "inputs": [],
+        "name": "pause",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "inputs": [],
+        "name": "paused",
+        "outputs": [{
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+        }],
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "inputs": [],
+        "name": "symbol",
+        "outputs": [{
+            "internalType": "string",
+            "name": "",
+            "type": "string"
+        }],
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "inputs": [],
+        "name": "totalSupply",
+        "outputs": [{
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+        }],
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "inputs": [{
+            "internalType": "address",
+            "name": "recipient",
+            "type": "address"
+        }, {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+        }],
+        "name": "transfer",
+        "outputs": [{
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+        }],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "inputs": [{
+            "internalType": "address",
+            "name": "sender",
+            "type": "address"
+        }, {
+            "internalType": "address",
+            "name": "recipient",
+            "type": "address"
+        }, {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+        }],
+        "name": "transferFrom",
+        "outputs": [{
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+        }],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "inputs": [],
+        "name": "unpause",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }];
 
     const PLTOKEN = '0xB2B445298C550F1b81110B9220037c6D1595041f'
 
-    const PLABI = [
-        {
-            "constant": false,
-            "inputs": [
-                {
-                    "name": "_token",
-                    "type": "address"
-                }
-            ],
-            "name": "claim",
-            "outputs": [],
-            "payable": false,
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "constant": false,
-            "inputs": [
-                {
-                    "name": "_to",
-                    "type": "address[]"
-                },
-                {
-                    "name": "_value",
-                    "type": "uint256"
-                },
-                {
-                    "name": "_tokenAddress",
-                    "type": "address"
-                }
-            ],
-            "name": "sendErc20",
-            "outputs": [
-                {
-                    "name": "_success",
-                    "type": "bool"
-                }
-            ],
-            "payable": false,
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "constant": false,
-            "inputs": [
-                {
-                    "name": "_to",
-                    "type": "address[]"
-                }
-            ],
-            "name": "sendEth",
-            "outputs": [
-                {
-                    "name": "_success",
-                    "type": "bool"
-                }
-            ],
-            "payable": true,
-            "stateMutability": "payable",
-            "type": "function"
-        },
-        {
-            "constant": true,
-            "inputs": [],
-            "name": "owner",
-            "outputs": [
-                {
-                    "name": "",
-                    "type": "address"
-                }
-            ],
-            "payable": false,
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "constant": true,
-            "inputs": [],
-            "name": "ThisAddress",
-            "outputs": [
-                {
-                    "name": "",
-                    "type": "address"
-                }
-            ],
-            "payable": false,
-            "stateMutability": "view",
-            "type": "function"
-        }
-    ]
+    const PLABI = [{
+        "constant": false,
+        "inputs": [{
+            "name": "_token",
+            "type": "address"
+        }],
+        "name": "claim",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "constant": false,
+        "inputs": [{
+            "name": "_to",
+            "type": "address[]"
+        }, {
+            "name": "_value",
+            "type": "uint256"
+        }, {
+            "name": "_tokenAddress",
+            "type": "address"
+        }],
+        "name": "sendErc20",
+        "outputs": [{
+            "name": "_success",
+            "type": "bool"
+        }],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "constant": false,
+        "inputs": [{
+            "name": "_to",
+            "type": "address[]"
+        }],
+        "name": "sendEth",
+        "outputs": [{
+            "name": "_success",
+            "type": "bool"
+        }],
+        "payable": true,
+        "stateMutability": "payable",
+        "type": "function"
+    }, {
+        "constant": true,
+        "inputs": [],
+        "name": "owner",
+        "outputs": [{
+            "name": "",
+            "type": "address"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "constant": true,
+        "inputs": [],
+        "name": "ThisAddress",
+        "outputs": [{
+            "name": "",
+            "type": "address"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }]
 
     init();
 </script>
+
 </html>
