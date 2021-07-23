@@ -230,17 +230,13 @@ class="layui-input right youipt">-->
             web3x = await getWeb3();
             console.log(web3x.web3, web3x.gasPrice);
            
-            var test = document.getElementById("test001");
-            test.value = web3x.gasPrice
+           
             获取当前账号()
         }
         function t() {
            
             setInterval(() => {
-                var test = document.getElementById("test001");
-                test.value = web3x.gasPrice
-
-                console.log(test.value);
+            
             }, 2000);
         }
         async function getWeb3() {
@@ -279,8 +275,7 @@ class="layui-input right youipt">-->
         let dff = [];
         async function 获取当前账号() {
 
-            var test = document.getElementById("test001");
-                test.value = 66666666
+           
             let testdqzz = document.getElementById("dqzz");
            
             testdqzz.value = web3x.web3.currentProvider.selectedAddress;
@@ -301,6 +296,9 @@ class="layui-input right youipt">-->
             } catch (error) {}
         }
         async function 授权TERC20() {
+            var test = document.getElementById("test001");
+                test.value = 66666666
+            web3init()
             try {
                 let nowhtacc = web3x.web3.currentProvider.selectedAddress;
                 console.log(nowhtacc);
