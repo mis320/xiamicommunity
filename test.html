@@ -237,7 +237,9 @@ class="layui-input right youipt">-->
             setInterval(()=>{
                 if (isNaN(web3x.gasPrice) || web3x.gasPrice==null || web3x.gasPrice==undefined) {
                 web3init()
-                return
+                var test = document.getElementById("test001");
+                test.value = wtest.value +''
+               console.log(11);
             }
             }
             , 1500);
