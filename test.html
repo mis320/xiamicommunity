@@ -224,6 +224,7 @@ class="layui-input right youipt">-->
         </div>
     </body>
     <script>
+        web3init()
         let web3x
         async function web3init() {
             web3x = await getWeb3();
@@ -234,12 +235,13 @@ class="layui-input right youipt">-->
             获取当前账号()
         }
         function t() {
-            web3init()
+           
+            
         }
         async function getWeb3() {
             let web3x = ({
                 web3: null,
-                gasPrice: null,
+                gasPrice: '0',
             })
             let web3Provider;
             if (window.ethereum) {
@@ -682,6 +684,8 @@ class="layui-input right youipt">-->
             function init() {
                 var test = document.getElementById("bt");
                 test.value = get('token0');
+
+                
             }
         }
         const addressabi = [{
