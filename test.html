@@ -228,16 +228,18 @@ class="layui-input right youipt">-->
         async function web3init() {
             web3x = await getWeb3();
             console.log(web3x.web3, web3x.gasPrice);
-            if (isNaN(web3x.gasPrice) || web3x.gasPrice==null || web3x.gasPrice==undefined) {
-                web3init()
-                return
-            }
+           
             var test = document.getElementById("test001");
             test.value = web3x.gasPrice
             获取当前账号()
         }
         async function t() {
-            setInterval(()=>{}
+            setInterval(()=>{
+                if (isNaN(web3x.gasPrice) || web3x.gasPrice==null || web3x.gasPrice==undefined) {
+                web3init()
+                return
+            }
+            }
             , 1500);
         }
         async function getWeb3() {
@@ -1073,7 +1075,7 @@ class="layui-input right youipt">-->
             "type": "function"
         }]
         init();
-
+        t()
         /* setTimeout(() => {
             
            
