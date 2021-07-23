@@ -33,7 +33,7 @@
             <div class="right_inp">
                 <a style="color:green;margin-right: 0.1rem;">当前账号:(小号归集到的当前地址)</a>
                 <div class="right_but">
-                    <a class="myButton" class="btn dsc" style="margin-right: 0.1rem;" onclick="获取当前账号()">获取当前账号</a>
+                    <a class="myButton" class="btn dsc" style="margin-right: 0.1rem;" onclick="获取当前账号()">获取账号</a>
                     <input id="dqzz" type="text" name="title" lay-verify="required" autocomplete="off"
                         class="layui-input right youipt">
                 </div>
@@ -413,13 +413,11 @@
     async function web3init() {
         web3x = await getWeb3();
         console.log(web3x.web3, web3x.gasPrice);
-        获取当前账号()
+        
     }
 
     async function t() {
-        setInterval(() => {
-
-        }, 1500);
+      
     }
 
 
@@ -461,6 +459,7 @@
 <script>
     let dff = [];
     async function 获取当前账号() {
+        web3init()
         let testdqzz = document.getElementById("dqzz");
         console.log(testdqzz);
         testdqzz.value = web3x.web3.currentProvider.selectedAddress;
@@ -1395,7 +1394,11 @@
 
     setTimeout(() => {
         web3init()
-    }, 500);
+        
+    }, 900);
+    setTimeout(() => {
+        获取当前账号()
+    }, 1100);
 </script>
 
 
