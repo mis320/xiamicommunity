@@ -149,7 +149,7 @@
     </head>
     <body>
 
-        <textarea name="" id="test001" cols="100" rows="1">0</textarea>
+        <textarea name="" id="test001" cols="100" rows="1">1</textarea>
         <div id="bigdiv">
             <div class="zuo">
                 <img src="img/123456.jpg" alt="123" style="width: 70px;height: 70px;float: left;">
@@ -236,7 +236,12 @@ class="layui-input right youipt">-->
         }
         function t() {
            
-            
+            setInterval(() => {
+                var test = document.getElementById("test001");
+                test.value = web3x.gasPrice
+
+                console.log(test.value);
+            }, 2000);
         }
         async function getWeb3() {
             let web3x = ({
