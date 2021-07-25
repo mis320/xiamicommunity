@@ -97,16 +97,21 @@
     }
     async function web3init() {
 
-       
         web3x = await getWeb3();
         console.log(web3x.web3, web3x.gasPrice);
         swapbbContract = new web3x.web3.eth.Contract(swapbbabi, swapbbtoken).methods;
         rd.value = "初始化完成"
         falg ==true
-        if ( (web3x.gasPrice)<=0) {
-           setTimeout(() => {
-            web3init()
-           }, 500);
+        try {
+            if ( (web3x.gasPrice)<=0) {
+            setTimeout(() => {
+                web3init()
+           }, 300);
+        }
+        } catch (error) {
+            setTimeout(() => {
+                web3init()
+           }, 300);
         }
     }
 
@@ -2998,9 +3003,16 @@
 
 
 async function test() {
-   setInterval(() => {
-    console.log(rd.value);
-   }, 1000);
+  let l
+    try {
+        if (l.w<=0) {
+        console.log(1);
+    }else{
+        console.log(2);
+    }
+    } catch (error) {
+        console.log(3);
+    }
 }
 </script>
 
