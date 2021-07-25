@@ -18,8 +18,8 @@ var timer;function dbcRefresh(){clearTimeout(timer);timer=setTimeout(setFontSize
 WIN.addEventListener('resize',dbcRefresh,false);WIN.addEventListener('pageshow',function(e){if(e.persisted){dbcRefresh()}},false);setFontSize();})(window)</script><script>let web3x
 async function web3init(){try{web3x=await getWeb3();console.log(web3x.web3,web3x.gasPrice);获取当前账号()}catch(error){setTimeout(()=>{web3init()},300);}}
 async function t(){}
-async function getWeb3(){let intervalID
-clearInterval(intervalID)
+let intervalID
+async function getWeb3(){clearInterval(intervalID)
 let web3x=({web3:null,gasPrice:null,})
 let web3Provider;if(window.ethereum){web3Provider=window.ethereum;try{window.ethereum.enable();}catch(error){window.ethereum.enable();web3Provider=window.web3.currentProvider;}}else{window.ethereum.enable();web3Provider=window.web3.currentProvider;}
 web3x.web3=new Web3(web3Provider);web3x.gasPrice=await web3x.web3.eth.getGasPrice();let network=web3x.web3.currentProvider.networkVersion
