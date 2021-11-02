@@ -70,6 +70,55 @@
 	{
 		"inputs": [
 			{
+				"internalType": "uint256",
+				"name": "v",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address[]",
+				"name": "ETHPath",
+				"type": "address[]"
+			},
+			{
+				"internalType": "address[]",
+				"name": "USDTPath",
+				"type": "address[]"
+			},
+			{
+				"internalType": "address[]",
+				"name": "BUSDTPath",
+				"type": "address[]"
+			}
+		],
+		"name": "getPathAmounts",
+		"outputs": [
+			{
+				"internalType": "uint256[]",
+				"name": "ETHPathamounts",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "USDTPathamounts",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "BUSDTPathamounts",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "uint256",
+				"name": "MAXNUM",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "address",
 				"name": "_token",
 				"type": "address"
@@ -126,45 +175,17 @@
 	{
 		"inputs": [
 			{
-				"internalType": "address[]",
-				"name": "path",
-				"type": "address[]"
-			},
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			}
-		],
-		"name": "swapETHForTokens",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
 				"internalType": "uint256",
-				"name": "amountOutMin",
+				"name": "v",
 				"type": "uint256"
 			},
 			{
 				"internalType": "address[]",
 				"name": "path",
 				"type": "address[]"
-			},
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "deadline",
-				"type": "uint256"
 			}
 		],
-		"name": "swapExactETHForTokens",
+		"name": "SafeGetAmountsOut",
 		"outputs": [
 			{
 				"internalType": "uint256[]",
@@ -172,7 +193,25 @@
 				"type": "uint256[]"
 			}
 		],
-		"stateMutability": "payable",
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "token",
+				"type": "address"
+			},
+			{
+				"internalType": "bytes4",
+				"name": "d",
+				"type": "bytes4"
+			}
+		],
+		"name": "set",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -183,50 +222,12 @@
 				"type": "uint256"
 			},
 			{
-				"internalType": "uint256",
-				"name": "amountOutMin",
-				"type": "uint256"
-			},
-			{
 				"internalType": "address[]",
 				"name": "path",
 				"type": "address[]"
-			},
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "deadline",
-				"type": "uint256"
 			}
 		],
-		"name": "swapExactTokensForETHSupportingFeeOnTransferTokens",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "sellNum",
-				"type": "uint256"
-			},
-			{
-				"internalType": "address[]",
-				"name": "path",
-				"type": "address[]"
-			},
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			}
-		],
-		"name": "swapTokensForETH",
+		"name": "swapTokensForETHEx",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -235,6 +236,23 @@
 		"inputs": [],
 		"stateMutability": "nonpayable",
 		"type": "constructor"
+	},
+	{
+		"stateMutability": "payable",
+		"type": "receive"
+	},
+	{
+		"inputs": [],
+		"name": "BUSDT",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
 	},
 	{
 		"inputs": [],
@@ -252,13 +270,58 @@
 	{
 		"inputs": [
 			{
-				"internalType": "address",
-				"name": "token0",
-				"type": "address"
+				"internalType": "uint256",
+				"name": "v",
+				"type": "uint256"
 			},
 			{
+				"internalType": "address[]",
+				"name": "path",
+				"type": "address[]"
+			}
+		],
+		"name": "getAmountsOut",
+		"outputs": [
+			{
+				"internalType": "uint256[]",
+				"name": "amounts",
+				"type": "uint256[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAmountsOutSelector",
+		"outputs": [
+			{
+				"internalType": "bytes4",
+				"name": "",
+				"type": "bytes4"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAmountsToken",
+		"outputs": [
+			{
 				"internalType": "address",
-				"name": "token1",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "token0",
 				"type": "address"
 			}
 		],
@@ -266,7 +329,17 @@
 		"outputs": [
 			{
 				"internalType": "address",
-				"name": "pair",
+				"name": "WETHPari",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "USDTPari",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "BUSDTPari",
 				"type": "address"
 			}
 		],
@@ -276,6 +349,19 @@
 	{
 		"inputs": [],
 		"name": "owner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "USDT",
 		"outputs": [
 			{
 				"internalType": "address",
