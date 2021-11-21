@@ -344,28 +344,6 @@
             "name": "",
             "type": "uint256"
         }],
-        "name": "swapInfos",
-        "outputs": [{
-                "internalType": "address",
-                "name": "factory",
-                "type": "address"
-            },
-            {
-                "internalType": "uint256",
-                "name": "K",
-                "type": "uint256"
-            },
-            {
-                "internalType": "bytes32",
-                "name": "initCodeHash",
-                "type": "bytes32"
-            },
-            {
-                "internalType": "string",
-                "name": "swapName",
-                "type": "string"
-            }
-        ],
         "stateMutability": "view",
         "type": "function"
     },
