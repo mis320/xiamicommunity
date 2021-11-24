@@ -55,9 +55,7 @@
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
-    },
-
-    {
+    },{
         "inputs": [{
                 "internalType": "address[][]",
                 "name": "paths",
@@ -86,6 +84,11 @@
             {
                 "internalType": "bool",
                 "name": "isPX",
+                "type": "bool"
+            },
+            {
+                "internalType": "bool",
+                "name": "issell",
                 "type": "bool"
             }
         ],
