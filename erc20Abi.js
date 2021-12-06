@@ -25,8 +25,8 @@
 				"type": "uint256[]"
 			},
 			{
-				"internalType": "contract IERC20",
-				"name": "token",
+				"internalType": "address",
+				"name": "token0",
 				"type": "address"
 			}
 		],
@@ -97,7 +97,6 @@
 		"type": "function"
 	}
 ]
-
     
     
     
