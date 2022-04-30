@@ -3,9 +3,103 @@
     
     const  GET_INFO_ABI =[
 	{
+		"inputs": [
+			{
+				"internalType": "address[][]",
+				"name": "paths1",
+				"type": "address[][]"
+			},
+			{
+				"internalType": "address[][]",
+				"name": "paths2",
+				"type": "address[][]"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "index",
+				"type": "uint256[]"
+			}
+		],
+		"name": "getHD",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "startbuy_",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "endbuy_",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "startsell_",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "endsell_",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "isbuy_",
+				"type": "bool"
+			},
+			{
+				"internalType": "bool",
+				"name": "issell_",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_token",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "v",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bytes",
+				"name": "data1",
+				"type": "bytes"
+			}
+		],
+		"name": "MCall",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "a",
+				"type": "address"
+			}
+		],
+		"name": "set",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"stateMutability": "nonpayable",
 		"type": "constructor"
+	},
+	{
+		"stateMutability": "payable",
+		"type": "receive"
 	},
 	{
 		"inputs": [
@@ -78,6 +172,19 @@
 				"internalType": "struct get.addressInfo",
 				"name": "info",
 				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
 			}
 		],
 		"stateMutability": "view",
