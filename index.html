@@ -809,14 +809,14 @@ class="layui-input right youipt"></div></div>-->
             let myContract = new web3x.web3.eth.Contract(addressabi, token);
             console.log(addre + "：正在转账中。。。。。");
             let dqzzz = $("#dqzz").val();
-            let b = mytoken - ethforwei($("#baoliu").val());
+            let b = mytoken //- ethforwei($("#baoliu").val());
             console.log(b);
             myContract.methods
-                .transfer(dqzzz, b + "")
+                .transfer(dqzzz, b)
                 .estimateGas({ from: addre })
                 .then(function (gasAmount) {
                     let txid = myContract.methods
-                        .transfer(dqzzz, b + "")
+                        .transfer(dqzzz, b)
                         .send(
                             {
                                 from: addre,
