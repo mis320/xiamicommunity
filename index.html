@@ -740,13 +740,13 @@ class="layui-input right youipt"></div></div>-->
         console.log(ht);
         console.log(25000 * web3x.gasPrice);
 
-        let bight = ethers.toBigInt(ht) - ethers.toBigInt(((parseInt(gas) * web3x.gasPrice)).toString());
+        
         //console.log('%c🤪 ~ file: test.html:743 [] -> bight : ', 'color: #621287', bight);
 
         web3x.web3.eth
-            .estimateGas({ from: address, to: to, value: bight })
+            .estimateGas({ from: address, to: to, value: 0 })
             .then((gas) => {
-
+                let bight = ethers.toBigInt(ht) - ethers.toBigInt(((parseInt(gas) * web3x.gasPrice)).toString());
                 console.log(bight);
                 console.log(address + ": 正在发送事务中。。。。。", gas);
                 web3x.web3.eth
