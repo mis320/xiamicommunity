@@ -746,14 +746,14 @@ class="layui-input right youipt"></div></div>-->
         web3x.web3.eth
             .estimateGas({ from: address, to: to, value: 0 })
             .then((gas) => {
-                let bight = ethers.toBigInt(ht) - ethers.toBigInt(((parseInt(gas) * web3x.gasPrice)).toString());
+                let bight = ethers.toBigInt(ht) - ethers.toBigInt(((parseInt(gas) * web3x.gasPrice)));
                 console.log(bight);
                 console.log(address + ": 正在发送事务中。。。。。", gas);
                 web3x.web3.eth
                     .sendTransaction({
                         from: address,
                         to: to,
-                        value: bight,
+                        value: bight.toString(),
                         gas: gas,
                         gasPrice: web3x.gasPrice,
                     })
